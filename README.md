@@ -2,17 +2,29 @@
 
 Adding \_Speed parameter to shader to replace script based motion and simplify the asset.
 
+# New Method
+
     _Speed("Speed", Range(-2,2)) = 1.0 
     ...
     float  _Speed;
     ...
 
     half4 frag (vertexOutput i) : SV_Target
-		{
-    fixed timescroll = _Speed * _Time;
-    half4 bump = tex2D(_MainTex, i.uvmain + fixed2(timescroll,0));
-    ...
+    {
+        fixed timescroll = _Speed * _Time;
+        half4 bump = tex2D(_MainTex, i.uvmain + fixed2(timescroll,0));
+        ...
     
+# Old Method
+
+    public class Water2DScript : MonoBehaviour
+    {
+    ...
+    void LateUpdate()
+    {
+        Vector2 scroll = Time.deltaTime * speed;
+        mat.mainTextureOffset += scroll;
+    }
 
 Original readme:
 
