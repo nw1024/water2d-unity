@@ -1,3 +1,21 @@
+# Shader Based Motion
+
+Adding \_Speed parameter to shader to replace script based motion and simplify the asset.
+
+    _Speed("Speed", Range(-2,2)) = 1.0 
+    ...
+    float  _Speed;
+    ...
+
+    half4 frag (vertexOutput i) : SV_Target
+		{
+    fixed timescroll = _Speed * _Time;
+    half4 bump = tex2D(_MainTex, i.uvmain + fixed2(timescroll,0));
+    ...
+    
+
+Original readme:
+
 # 2D Water surface in Unity3D
 
 ![screenshot](screenshot.gif)
